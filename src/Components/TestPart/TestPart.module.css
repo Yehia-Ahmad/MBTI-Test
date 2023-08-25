@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600&display=swap');
+
+.Container{
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    padding: 2rem;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 15px 10px;
+    background-color: #E9C7C0;
+}
+
+.PartContainer{
+    box-sizing: border-box;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.PartContainer p{
+    font-family: "Alexandria", 'Times New Roman', Times, serif;
+    font-weight: 600;
+}
