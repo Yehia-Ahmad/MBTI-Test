@@ -2,7 +2,7 @@ import React from "react";
 import TestPart from "./Components/TestPart/TestPart";
 import Header from "./Components/Header/Header";
 import { useSelector } from "react-redux";
-import PartOne from "./Components/PartTwo/PartOne";
+import PartOne from "./Components/PartOne/PartOne";
 
 function App() {
   const partOne = useSelector((state) => state.partOneIsActive);
