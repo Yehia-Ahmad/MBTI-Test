@@ -4,6 +4,8 @@ import partone from "./PartOneObject";
 
 const PartOne = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  // const [arrowForwardActive, setArrowForwardActive] = useState(true);
+  // const [arrowBackActive, setArrowBackActive] = useState(false);
 
   const updateIndex = (newIndex) => {
     if (newIndex < 0) {
@@ -20,7 +22,7 @@ const PartOne = () => {
       <div className={styles.questionContainer}>
         <div
           className={styles.inner}
-          style={{ transform: `translate(-${activeIndex * 100}%)` }}
+          style={{ transform: `translate(-${activeIndex * (100 + 0.45)}%)` }}
         >
           {partone.map((item, index) => {
             return (
@@ -55,6 +57,7 @@ const PartOne = () => {
         >
           <span className="material-symbols-outlined">arrow_back_ios</span>
         </button>
+
         <button
           className={styles.buttonArrow}
           onClick={() => {

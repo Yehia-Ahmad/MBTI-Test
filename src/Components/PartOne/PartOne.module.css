@@ -53,6 +53,8 @@
 .answer {
   font-weight: 700;
   text-align: right;
+  display: flex;
+  flex-direction: column;
 
   /* font-size: 1.15rem;
   margin: 40px 0 40px 0;
@@ -67,7 +69,9 @@
 
 .answer label input {
   cursor: pointer;
-  border: none;
+  width: 1.5em;
+  height: 1.5rem;
+  accent-color: #e9c7c0;
 }
 
 .buttonArrow {
