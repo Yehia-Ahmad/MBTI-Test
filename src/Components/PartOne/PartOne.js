@@ -1,11 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import styles from "../../Styles/styles.module.css";
 import partone from "./PartOneObject";
 
+let finalAnswer = [];
 const PartOne = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const radioButtonRef = useRef([]);
-  radioButtonRef.current = [];
+  const tempAnswer = [];
 
   const updateIndex = (newIndex) => {
     if (newIndex < 0) {
@@ -17,14 +17,41 @@ const PartOne = () => {
     setActiveIndex(newIndex);
   };
 
-  const submitHandler = () => {
-    console.log(radioButtonRef.current);
+  const pushAnswer = () => {
+    if (tempAnswer.length > 0) {
+      finalAnswer.push(tempAnswer[tempAnswer.length - 1]);
+      console.log(finalAnswer);
+      console.log(finalAnswer.length);
+    }
   };
 
-  const addToRef = (el) => {
-    if (el && !radioButtonRef.current.includes(el)) {
-      radioButtonRef.current.push(el);
+  const submitHandler = () => {
+    finalAnswer = [...new Set(finalAnswer)];
+    return console.log(finalAnswer);
+  };
+
+  const onClickHandler = (e) => {
+    const el = e.target.id;
+    const elName = e.target.value;
+    console.log(elName);
+
+    let wrongAnswerArr = [];
+    partone.map((item) => {
+      if (item.name === el) {
+        wrongAnswerArr = item.answers.filter((e) => e !== elName);
+      }
+      return "";
+    });
+    const wrongAnswerVal = wrongAnswerArr[0];
+    console.log(wrongAnswerVal);
+    if (finalAnswer.includes(wrongAnswerVal)) {
+      finalAnswer = finalAnswer.filter((e) => e !== wrongAnswerVal);
+      console.log(finalAnswer);
     }
+  };
+
+  const onChangeHandler = (e) => {
+    tempAnswer.push(e.target.value);
   };
 
   return (
@@ -47,10 +74,11 @@ const PartOne = () => {
                           <input
                             type="radio"
                             name="answer"
-                            id={answer}
+                            id={item.name}
                             value={answer}
-                            ref={addToRef}
                             key={indexAnswer}
+                            onClick={onClickHandler}
+                            onChange={onChangeHandler}
                           />
                         </label>
                       );
@@ -66,6 +94,7 @@ const PartOne = () => {
             className={styles.buttonArrow}
             onClick={() => {
               updateIndex(activeIndex - 1);
+              pushAnswer();
             }}
           >
             <span className="material-symbols-outlined">arrow_back_ios</span>
@@ -75,6 +104,7 @@ const PartOne = () => {
             className={styles.buttonArrow}
             onClick={() => {
               updateIndex(activeIndex + 1);
+              pushAnswer();
             }}
           >
             <span className="material-symbols-outlined">arrow_forward_ios</span>
