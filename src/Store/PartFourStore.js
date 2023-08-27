@@ -8,10 +8,10 @@ const partFour = createSlice({
   initialState,
   reducers: {
     showPart(state) {
-      state.partOneIsActive = true;
+      state.partFourIsActive = true;
     },
     hidePart(state) {
-      state.partOneIsActive = false;
+      state.partFourIsActive = false;
     },
   },
 });
