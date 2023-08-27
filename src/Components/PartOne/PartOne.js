@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import styles from "./PartOne.module.css";
+import React, { useRef, useState } from "react";
+import styles from "../../Styles/styles.module.css";
 import partone from "./PartOneObject";
 
 const PartOne = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  // const [arrowForwardActive, setArrowForwardActive] = useState(true);
-  // const [arrowBackActive, setArrowBackActive] = useState(false);
+  const radioButtonRef = useRef([]);
+  radioButtonRef.current = [];
 
   const updateIndex = (newIndex) => {
     if (newIndex < 0) {
@@ -17,57 +17,74 @@ const PartOne = () => {
     setActiveIndex(newIndex);
   };
 
+  const submitHandler = () => {
+    console.log(radioButtonRef.current);
+  };
+
+  const addToRef = (el) => {
+    if (el && !radioButtonRef.current.includes(el)) {
+      radioButtonRef.current.push(el);
+    }
+  };
+
   return (
-    <div className={styles.container}>
-      <div className={styles.questionContainer}>
-        <div
-          className={styles.inner}
-          style={{ transform: `translate(-${activeIndex * (100 + 0.45)}%)` }}
-        >
-          {partone.map((item, index) => {
-            return (
-              <div className={styles.questionItem}>
-                <h1 key={index}>{item.name}</h1>
-                <div className={styles.answer}>
-                  {item.answers.map((answer, indexAnswer) => {
-                    return (
-                      <label key={indexAnswer}>
-                        {answer}
-                        <input
-                          type="radio"
-                          id={answer}
-                          name="drone"
-                          value={answer}
-                        />
-                      </label>
-                    );
-                  })}
+    <React.Fragment>
+      <div className={styles.container}>
+        <div className={styles.questionContainer}>
+          <div
+            className={styles.inner}
+            style={{ transform: `translate(-${activeIndex * (100 + 0.45)}%)` }}
+          >
+            {partone.map((item, index) => {
+              return (
+                <div className={styles.questionItem}>
+                  <h1 key={index}>{item.name}</h1>
+                  <div className={styles.answer}>
+                    {item.answers.map((answer, indexAnswer) => {
+                      return (
+                        <label key={answer}>
+                          {answer}
+                          <input
+                            key={indexAnswer}
+                            type="radio"
+                            ref={addToRef}
+                            id={answer}
+                            name="answer"
+                            value={answer}
+                          />
+                        </label>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+        </div>
+        <div>
+          <button
+            className={styles.buttonArrow}
+            onClick={() => {
+              updateIndex(activeIndex - 1);
+            }}
+          >
+            <span className="material-symbols-outlined">arrow_back_ios</span>
+          </button>
+
+          <button
+            className={styles.buttonArrow}
+            onClick={() => {
+              updateIndex(activeIndex + 1);
+            }}
+          >
+            <span className="material-symbols-outlined">arrow_forward_ios</span>
+          </button>
+          <button className={styles.submitButton} onClick={submitHandler}>
+            Submit Answer
+          </button>
         </div>
       </div>
-      <div>
-        <button
-          className={styles.buttonArrow}
-          onClick={() => {
-            updateIndex(activeIndex - 1);
-          }}
-        >
-          <span className="material-symbols-outlined">arrow_back_ios</span>
-        </button>
-
-        <button
-          className={styles.buttonArrow}
-          onClick={() => {
-            updateIndex(activeIndex + 1);
-          }}
-        >
-          <span className="material-symbols-outlined">arrow_forward_ios</span>
-        </button>
-      </div>
-    </div>
+    </React.Fragment>
   );
 };
 
