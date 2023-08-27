@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import styles from "../../Styles/styles.module.css";
 import partone from "./PartOneObject";
 
-let finalAnswer = [];
+let finalAnswer = []; //the final array with all Answers
+
 const PartOne = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const tempAnswer = [];
 
+  //Handel Slider
   const updateIndex = (newIndex) => {
     if (newIndex < 0) {
       newIndex = 0;
@@ -17,6 +19,7 @@ const PartOne = () => {
     setActiveIndex(newIndex);
   };
 
+  //add the final answer to finalAnswer Array
   const pushAnswer = () => {
     if (tempAnswer.length > 0) {
       finalAnswer.push(tempAnswer[tempAnswer.length - 1]);
@@ -25,11 +28,13 @@ const PartOne = () => {
     }
   };
 
+  //Handel submit button add clear the array from duplicate element
   const submitHandler = () => {
     finalAnswer = [...new Set(finalAnswer)];
     return console.log(finalAnswer);
   };
 
+  //Remove the other answer to same question
   const onClickHandler = (e) => {
     const el = e.target.id;
     const elName = e.target.value;
@@ -50,6 +55,7 @@ const PartOne = () => {
     }
   };
 
+  //add the answer to temp Array to add this value to finalAnswer array in pushAnswer function
   const onChangeHandler = (e) => {
     tempAnswer.push(e.target.value);
   };
