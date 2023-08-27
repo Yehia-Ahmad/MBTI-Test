@@ -45,11 +45,11 @@ const PartOne = () => {
                         <label key={answer}>
                           {answer}
                           <input
-                            key={indexAnswer}
                             type="radio"
+                            name="answer"
+                            key={indexAnswer}
                             ref={addToRef}
                             id={answer}
-                            name="answer"
                             value={answer}
                           />
                         </label>
