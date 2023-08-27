@@ -11,6 +11,8 @@ function App() {
   const [showTestPart, setShowTestPart] = useState(true);
   const partOne = useSelector((state) => state.partOne.partOneIsActive);
   const partTwo = useSelector((state) => state.partTwo.partTwoIsActive);
+  // const partFour = useSelector((state) => state.partFour.partFourIsActive);
+  // const partThree = useSelector((state) => state.partThree.partThreeIsActive);
 
   const hidePartHandler = () => {
     setShowTestPart(false);
