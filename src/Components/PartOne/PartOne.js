@@ -47,10 +47,10 @@ const PartOne = () => {
                           <input
                             type="radio"
                             name="answer"
-                            key={indexAnswer}
-                            ref={addToRef}
                             id={answer}
                             value={answer}
+                            ref={addToRef}
+                            key={indexAnswer}
                           />
                         </label>
                       );
