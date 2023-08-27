@@ -1,25 +1,15 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import PartOneStore from "./PartOneStore";
+import PartTwoStore from "./PartTwoStore";
 
-const initialState = {
-  partOneIsActive: false,
-};
-const partOne = createSlice({
-  name: "partOne",
-  initialState,
-  reducers: {
-    showPart(state) {
-      state.partOneIsActive = true;
-    },
-    hidePart(state) {
-      state.partOneIsActive = false;
-    },
+const showParts = configureStore({
+  reducer: {
+    partOne: PartOneStore.reducer,
+    partTwo: PartTwoStore.reducer,
   },
 });
 
-const showParts = configureStore({
-  reducer: partOne.reducer,
-});
-
-export const partOneActions = partOne.actions;
+export const partOneActions = PartOneStore.actions;
+export const partTwoActions = PartTwoStore.actions;
 
 export default showParts;

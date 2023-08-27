@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import styles from "../../Styles/styles.module.css";
-import partone from "./PartOneObject";
+import styles from "./partTwo.module.css";
+import partTwo from "./PartTwoObject";
 
 let finalAnswer = []; //the final array with all Answers
 
-const PartOne = (props) => {
+const PartTwo = (props) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const tempAnswer = [];
 
@@ -12,8 +12,8 @@ const PartOne = (props) => {
   const updateIndex = (newIndex) => {
     if (newIndex < 0) {
       newIndex = 0;
-    } else if (newIndex >= partone.length) {
-      newIndex = partone.length - 1;
+    } else if (newIndex >= partTwo.length) {
+      newIndex = partTwo.length - 1;
     }
 
     setActiveIndex(newIndex);
@@ -41,7 +41,7 @@ const PartOne = (props) => {
     console.log(elName);
 
     let wrongAnswerArr = [];
-    partone.map((item) => {
+    partTwo.map((item) => {
       if (item.name === el) {
         wrongAnswerArr = item.answers.filter((e) => e !== elName);
       }
@@ -66,9 +66,9 @@ const PartOne = (props) => {
         <div className={styles.questionContainer}>
           <div
             className={styles.inner}
-            style={{ transform: `translate(-${activeIndex * (100 + 0.45)}%)` }}
+            style={{ transform: `translate(-${activeIndex * (100 + 0.8)}%)` }}
           >
-            {partone.map((item, index) => {
+            {partTwo.map((item, index) => {
               return (
                 <div className={styles.questionItem}>
                   <h1 key={index}>{item.name}</h1>
@@ -130,4 +130,4 @@ const PartOne = (props) => {
   );
 };
 
-export default PartOne;
+export default PartTwo;
