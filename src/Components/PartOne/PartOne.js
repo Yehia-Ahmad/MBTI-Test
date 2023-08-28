@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "../../Styles/styles.module.css";
 import partone from "./PartOneObject";
+import { PAnswer } from "../../AnswerObject";
 
 let finalAnswer = []; //the final array with all Answers
 
@@ -23,22 +24,35 @@ const PartOne = (props) => {
   const pushAnswer = () => {
     if (tempAnswer.length > 0) {
       finalAnswer.push(tempAnswer[tempAnswer.length - 1]);
-      console.log(finalAnswer);
-      console.log(finalAnswer.length);
+      // console.log(finalAnswer);
+      // console.log(finalAnswer.length);
     }
   };
 
   //Handel submit button add clear the array from duplicate element
   const submitHandler = () => {
     finalAnswer = [...new Set(finalAnswer)];
-    return console.log(finalAnswer);
+    const answer = [];
+    PAnswer.Answers.map((item) => {
+      finalAnswer.map((ans) => {
+        if (ans === item) {
+          PAnswer.value = PAnswer.value + 1;
+          answer.push(ans);
+        }
+        return "";
+      });
+      return "";
+    });
+    // console.log(finalAnswer);
+    console.log(answer);
+    return console.log(PAnswer.value);
   };
 
   //Remove the other answer to same question
   const onClickHandler = (e) => {
     const el = e.target.id;
     const elName = e.target.value;
-    console.log(elName);
+    // console.log(elName);
 
     let wrongAnswerArr = [];
     partone.map((item) => {
@@ -48,7 +62,7 @@ const PartOne = (props) => {
       return "";
     });
     const wrongAnswerVal = wrongAnswerArr[0];
-    console.log(wrongAnswerVal);
+    // console.log(wrongAnswerVal);
     if (finalAnswer.includes(wrongAnswerVal)) {
       finalAnswer = finalAnswer.filter((e) => e !== wrongAnswerVal);
       console.log(finalAnswer);
@@ -119,7 +133,7 @@ const PartOne = (props) => {
             className={styles.submitButton}
             onClick={() => {
               submitHandler();
-              props.showPart();
+              // props.showPart();
             }}
           >
             Submit Answer
